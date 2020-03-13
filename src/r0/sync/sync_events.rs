@@ -17,6 +17,7 @@ use ruma_events::{
 use ruma_identifiers::RoomId;
 use serde::{Deserialize, Serialize};
 
+use crate::r0::keys::KeyAlgorithm;
 use crate::r0::filter::FilterDefinition;
 
 ruma_api! {
@@ -64,6 +65,10 @@ ruma_api! {
         /// Messages sent dirrectly between devices.
         #[wrap_incoming]
         pub to_device: ToDevice,
+        /// For each key algorithm, the number of unclaimed one-time keys of that
+        /// type currently held on the server for this device.
+        #[serde(default)]
+        pub device_one_time_keys_count: HashMap<KeyAlgorithm, UInt>
     }
 }
 
