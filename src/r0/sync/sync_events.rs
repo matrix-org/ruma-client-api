@@ -260,7 +260,7 @@ pub struct Ephemeral {
 pub struct RoomSummary {
     /// Users which can be used to generate a room name if the room does not have
     /// one. Required if room name or canonical aliases are not set or empty.
-    #[serde(skip_serializing_if = "Vec::is_empty")]
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub heroes: Vec<String>,
     /// Number of users whose membership status is `join`.
     /// Required if field has changed since last sync; otherwise, it may be
